@@ -393,7 +393,7 @@ class gltfRenderer
         WebGl.setTexture(this.shader.getUniformLocation("u_SpecularEnvSampler"), gltf, gltf.envData.specularEnvMap, texSlotOffset + 1);
         WebGl.setTexture(this.shader.getUniformLocation("u_brdfLUT"), gltf, gltf.envData.lut, texSlotOffset + 2);
 
-        this.shader.updateUniform("u_ScaleIBLAmbient", jsToGl([1, 1, gltf.textures.length, 0]));
+        this.shader.updateUniform("u_ScaleIBLAmbient", jsToGl([1, 1, 11, 0]));
     }
 
     destroy()
