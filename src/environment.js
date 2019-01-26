@@ -32,12 +32,12 @@ class gltfEnvironmentLoader
 
         const CubeMapSides =
         [
-            { name: "right", type: WebGl.context.TEXTURE_CUBE_MAP_POSITIVE_X },
-            { name: "left", type: WebGl.context.TEXTURE_CUBE_MAP_NEGATIVE_X },
+            { name: "front", type: WebGl.context.TEXTURE_CUBE_MAP_POSITIVE_X },
+            { name: "back", type: WebGl.context.TEXTURE_CUBE_MAP_NEGATIVE_X },
             { name: "top", type: WebGl.context.TEXTURE_CUBE_MAP_POSITIVE_Y },
             { name: "bottom", type: WebGl.context.TEXTURE_CUBE_MAP_NEGATIVE_Y },
-            { name: "front", type: WebGl.context.TEXTURE_CUBE_MAP_POSITIVE_Z },
-            { name: "back", type: WebGl.context.TEXTURE_CUBE_MAP_NEGATIVE_Z },
+            { name: "left", type: WebGl.context.TEXTURE_CUBE_MAP_POSITIVE_Z },
+            { name: "right", type: WebGl.context.TEXTURE_CUBE_MAP_NEGATIVE_Z },
         ];
 
         gltf.samplers.push(new gltfSampler(WebGl.context.LINEAR, WebGl.context.LINEAR, WebGl.context.CLAMP_TO_EDGE, WebGl.context.CLAMP_TO_EDGE, "DiffuseCubeMapSampler"));

@@ -102,8 +102,7 @@ vec3 getIBLContribution(MaterialInfo materialInfo, vec3 n, vec3 v)
 
     float NdotV = clamp(dot(n, v), 0.0, 1.0);
 
-    //float lod = clamp(materialInfo.perceptualRoughness * mipCount, 0.0, mipCount);
-    float lod = clamp(log2(materialInfo.alphaRoughness * exp2(mipCount - 1.0)), 0.0, mipCount);
+    float lod = clamp(materialInfo.perceptualRoughness * mipCount, 0.0, mipCount);
     vec3 reflection = normalize(reflect(-v, n));
 
     vec2 brdfSamplePoint = clamp(vec2(NdotV, materialInfo.perceptualRoughness), vec2(0.0, 0.0), vec2(1.0, 1.0));
