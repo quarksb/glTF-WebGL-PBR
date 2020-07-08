@@ -1,3 +1,4 @@
+let quatVec4 = quat.create();
 function loadCubeMap(gl, envMap, type, state) {
     var texture = gl.createTexture();
     var textureNumber = -1;
@@ -271,6 +272,42 @@ function init(vertSource, fragSource) {
 
 
     updateLight();
+
+    const camera = gui.addFolder("物体旋转");
+    const cameraProps = {
+        rotateX: 0,
+        rotateY: 0,
+        rotateZ: 0,
+    }
+    quat.fromEuler = (out, x, y, z) => {
+        let halfToRad = (0.5 * Math.PI) / 180.0;
+        x *= halfToRad;
+        y *= halfToRad;
+        z *= halfToRad;
+
+        let sx = Math.sin(x);
+        let cx = Math.cos(x);
+        let sy = Math.sin(y);
+        let cy = Math.cos(y);
+        let sz = Math.sin(z);
+        let cz = Math.cos(z);
+
+        out[0] = sx * cy * cz - cx * sy * sz;
+        out[1] = cx * sy * cz + sx * cy * sz;
+        out[2] = cx * cy * sz - sx * sy * cz;
+        out[3] = cx * cy * cz + sx * sy * sz;
+
+        return out;
+    }
+
+    const updateCamera = ()=>{
+        quatVec4 = quat.fromEuler([], cameraProps.rotateX, cameraProps.rotateY, cameraProps.rotateZ);
+        redraw()
+    }
+    camera.add(cameraProps, "rotateX", -180, 180).name("上下旋转").onChange(updateCamera);
+    camera.add(cameraProps, "rotateY", -180, 180).name("左右旋转").onChange(updateCamera);
+    camera.add(cameraProps, "rotateZ", -180, 180).name("绕z轴旋转").onChange(updateCamera);
+    camera.open()
 
     //mouseover scaling
 

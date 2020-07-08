@@ -37,7 +37,7 @@ class Scene {
             } else {
                 localTransform = mat4.create();
                 var scale = node.scale ? node.scale : [1.0, 1.0, 1.0];
-                var rotation = node.rotation ? node.rotation : [0.0, 0.0, 0.0, 1.0];
+                var rotation =  quat.multiply([], quatVec4, node.rotation || [0,0,0,1]);
                 var translate = node.translation ? node.translation : [0.0, 0.0, 0.0];
 
                 mat4.fromRotationTranslationScale(localTransform, rotation, translate, scale);
